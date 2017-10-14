@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
+    "config": "^1.26.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "mapbox-gl": "^0.41.0",

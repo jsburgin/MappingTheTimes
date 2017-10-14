@@ -61,3 +61,5 @@ typings/
 src/**/*.css
 
 .DS_Store
+config/development.json
+config/production.json
