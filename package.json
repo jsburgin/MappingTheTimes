@@ -15,7 +15,8 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.14",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "watson-developer-cloud": "^2.41.1"
   },
   "scripts": {
     "start": "npm-run-all -p watch-css start-js",
