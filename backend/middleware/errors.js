@@ -31,7 +31,7 @@ module.exports = () => {
   const handler = process.env === 'development' ? dev : prod;
 
   return (err, req, res, next) => {
-    req.status(err.status || 500);
+    res.status(err.status || 500);
     handler(err, req, res, next);
   };
 };
