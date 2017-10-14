@@ -36,11 +36,37 @@ const articlesApi = {
 
     cache.setAsync(route, JSON.stringify(data));
   },
-  fetchArticleBatch(route) {
+  fetchArticles(route) {
     return axios.get(route, { params: { 'api-key': nytKey }})
       .then(res => {
         return res.data.results;
       });
+  },
+  groupArticlesByDate(articles) {
+    const map = {};
+    const days = [];
+
+    articles.forEach(article => {
+      if (!article.geo_facet || article.geo_facet === '') return;
+      if (!map[article.published_date]) {
+        map[article.published_date] = {
+          day: article.published_date,
+          articles: [],
+        };
+      }
+
+      map[article.published_date].articles.push(article);
+    });
+
+    for (let key in map) {
+      days.push(map[key]);
+    }
+
+    days.sort((a, b) => {
+      return a.day < b.day;
+    });
+
+    return days;
   },
   get(data) {
     if (!data.section) data.section = 'U.S.';
@@ -55,8 +81,9 @@ const articlesApi = {
         }
 
         // re-process the route
-        return articlesApi.fetchArticleBatch(route)
-          .then(articleBatch => {
+        return articlesApi.fetchArticles(route)
+          .then(articles => {
+            const articleBatch = articlesApi.groupArticlesByDate(articles);
             process.nextTick(() => articlesApi.cacheArticleBatch(articleBatch, route));
             return articleBatch;
           });
