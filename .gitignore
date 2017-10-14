@@ -59,3 +59,5 @@ typings/
 
 # CSS build stuff
 src/**/*.css
+
+.DS_Store
