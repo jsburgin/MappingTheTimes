@@ -45,6 +45,7 @@ body,
 }
 
 .article-list {
+    box-sizing: border-box;
     width: 45%;
     max-height: 100vh;
     overflow: scroll;
@@ -52,7 +53,7 @@ body,
     float: right;
     display: inline-block;
     background: white;
-    margin-top: 5rem;
+    padding-top: 6rem;
 
 
     h1 {
@@ -61,13 +62,20 @@ body,
     }
 
     .article{
-        width: 96%;
+        width: 80%;
         margin-left: auto;
         margin-right: auto;
         border-top: 1px solid $black;
         border-bottom: 1px solid $black;
         position: relative;
-        overflow: visible;
+        overflow: hidden;
+        max-height: 85vh;
+        margin-bottom: 5rem;
+
+        h1{
+            font-size: 26px;
+            line-height: 28px;
+        }
 
 //        time{
 //            position: absolute;
@@ -82,9 +90,6 @@ body,
         h3{
             font-size: 11px;
             font-weight: bold;
-            span{
-                text-transform: capitalize;
-            }
         }
 
         p{
