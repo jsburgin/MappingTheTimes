@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
     "node-sass-chokidar": "^0.0.3",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -10,15 +13,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:backend": "node backend",
+    "start:backend": "nodemon backend",
     "build": "react-scripts build",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2"
   }
 }
