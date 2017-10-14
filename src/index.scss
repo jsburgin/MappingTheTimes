@@ -47,7 +47,9 @@ body,
 .article-list {
     box-sizing: border-box;
     width: 45%;
+    height: 100vh;
     max-height: 100vh;
+
     overflow: scroll;
     overflow-x: visible;
     float: right;
