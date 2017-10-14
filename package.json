@@ -22,7 +22,7 @@
     "start-js": "react-scripts start",
     "start:backend": "nodemon backend",
     "build": "npm run build-css && react-scripts build",
-    "build-css": "node-sass-chokidar src/scss -o src/css",
+    "build-css": "node-sass-chokidar src -o src/css",
     "watch-css": "npm run build-css && node-sass-chokidar src -o src/css --watch --recursive",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
