@@ -12,3 +12,5 @@ const Article = props => (
     </p>
   </div>
 );
+
+export default Article;
