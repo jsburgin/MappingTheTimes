@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default class Map extends Component {
   componentDidMount() {

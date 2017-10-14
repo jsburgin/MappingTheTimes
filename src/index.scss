@@ -25,17 +25,24 @@ html, body, #root {
         margin: 0;
         padding: 15px;
     }
-
-    .map{
-        width: 30%;
-        height: 100vh;
-        float: left;
-        //flex-grow: 1;
-    }
-    .article-list{
-        width: 70%;
-        height: 100vh;
-        float: left;
-        //flex-grow: 3
-    }
 }
+
+.map{
+    width: 50%;
+    height: 100vh;
+    float: left;
+    display: inline-block;
+    //flex-grow: 1;
+    }
+
+.article-list{
+    width: 50%;
+    height: 100vh;
+    float: right;
+    display: inline-block;
+    background: blue;
+    h1{
+
+        font-size: 1rem;
+    }
+    }
