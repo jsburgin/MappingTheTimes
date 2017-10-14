@@ -15,7 +15,7 @@ const configure = (app) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   configRoutes(app);
-  app.use(errorHandler);
+  app.use(errorHandler());
 };
 
 /**
