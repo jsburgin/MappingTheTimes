@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default () => (
+const Header = props => (
   <div>
     <h1>This is the header component</h1>
   </div>
 );
+
+export default Header;
