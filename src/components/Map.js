@@ -14,7 +14,7 @@ export default class Map extends Component {
 
   render() {
     return (
-      <div id="mapContainer">
+      <div className="map" id="mapContainer">
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Header = props => (
-  <div>
+  <div className='header'>
     <h1>This is the header component</h1>
   </div>
 );
