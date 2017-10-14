@@ -3,7 +3,7 @@ const cors = require('cors');
 const errorHandler = require('../middleware/errors');
 const configRoutes = require('../routes/config');
 
-const port = process.env.PORT || '8000';
+const port = '8000';
 
 /**
  * initial app configuration

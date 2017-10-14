@@ -11,6 +11,10 @@ export default class Wrapper extends Component {
     this.state = {};
   }
 
+  async componentWillMount() {
+    
+  }
+
   render() {
     return (
       <div className="wrapper">

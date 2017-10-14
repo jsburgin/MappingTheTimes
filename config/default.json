@@ -1,4 +1,9 @@
 {
+  "cacheMinutes": "5",
+  "mapboxKey": "",
   "nytKey": "",
-  "mapboxKey": ""
+  "watson": {
+    "username": "",
+    "password": ""
+  }
 }
