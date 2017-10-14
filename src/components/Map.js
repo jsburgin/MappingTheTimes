@@ -8,7 +8,7 @@ export default class Map extends Component {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic2lkcDAiLCJhIjoiY2o4cm94cHVvMHpkdjMycXBzcmpiYTF3MiJ9.iSzjhsbk8TT8n2YF-sJoVQ'
   const map = new mapboxgl.Map({
     container: 'mapContainer',
-    style: 'mapbox://styles/mapbox/streets-v10'
+    style: 'mapbox://styles/mapbox/dark-v9'
    });
   }
 
