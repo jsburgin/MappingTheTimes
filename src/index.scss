@@ -1,4 +1,5 @@
 $nav-height: 70px;
+$black: #333333;
 
 html,
 body,
@@ -7,7 +8,7 @@ body,
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: georgia, "times new roman", times, serif;
 }
 
 .wrapper {
@@ -20,7 +21,7 @@ body,
 
 .header {
     background: white;
-    border-bottom: 4px solid black;
+    border-bottom: 4px solid $black;
     margin-top: 0;
     width: 100%; //height: $nav-height;
     position: absolute;
@@ -33,26 +34,61 @@ body,
 }
 
 .map {
-    width: 50%;
+    width: 55%;
     height: 100vh;
     float: left;
     display: inline-block;
     position: absolute;
     top: 0;
     left: 0; //flex-grow: 1;
+    z-index: -20;
 }
 
 .article-list {
-    width: 50%;
+    width: 45%;
     max-height: 100vh;
     overflow: scroll;
+    overflow-x: visible;
     float: right;
     display: inline-block;
     background: white;
 
 
     h1 {
-        font-size: 1.5rem;
-        font: 'Georgia';
+        font-size: 20px;
+        font-style: italic;
+    }
+
+    .article{
+        width: 96%;
+        margin-left: auto;
+        margin-right: auto;
+        border-top: 1px solid $black;
+        border-bottom: 1px solid $black;
+        position: relative;
+        overflow: visible;
+
+//        time{
+//            position: absolute;
+//            left: -40px;
+//            top: -30px;
+//            background: white;
+//            padding: 10px;
+//            z-index: 50;
+//            overflow: visible;
+//        }
+
+        h3{
+            font-size: 11px;
+            font-weight: bold;
+            span{
+                text-transform: capitalize;
+            }
+        }
+
+        p{
+            line-height: 26px;
+            font-size: 17px;
+        }
     }
 }
