@@ -5,38 +5,9 @@ import ArticleListSlider from './ArticleListSlider';
 const ArticleList = props => (
   <div className='article-list'>
     <ArticleListSlider />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
-    <Article />
+    {
+      props.articles.map(a => <Article data={a} key={a.id} />)
+    }
   </div>
 );
 

@@ -8,11 +8,14 @@ export default class Wrapper extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      articles: []
+    };
   }
 
   async componentWillMount() {
-    
+    const articles = (await axios.get('http://localhost:8000/api/articles')).data;
+    this.setState({ articles: articles[articles.length - 1].articles });
   }
 
   render() {
