@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Header from '../components/Header';
 import Map from '../components/Map';
 import ArticleList from '../components/ArticleList';
