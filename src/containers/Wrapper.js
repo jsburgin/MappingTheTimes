@@ -18,9 +18,9 @@ export default class Wrapper extends Component {
       day: 0,
       query: {
         year: today.getFullYear(),
-        month: today.getMonth(),
+        month: today.getMonth() + 1,
       },
-      month: today.getMonth(),
+      month: today.getMonth() + 1,
       mode: 'dark',
     };
   }
@@ -33,8 +33,8 @@ export default class Wrapper extends Component {
     });
 
     emitter.on('changeMonth', month => {
-      this.setState({ query: Object.assign({}, this.state.query, { month }) });
-      this.fetchArticles();
+      this.setState({ query: Object.assign({}, this.state.query, { month: month + 1 }) });
+      this.fetchArticles(this.state.query.year, month + 1);
     });
 
     emitter.on('changeDay', day => this.setState({ day }));
@@ -43,10 +43,10 @@ export default class Wrapper extends Component {
     this.fetchArticles();
   } 
 
-  fetchArticles = () => {
+  fetchArticles = (year, month) => {
     const params = {
-      year: this.state.query.year,
-      month: this.state.query.month,
+      year: year || this.state.query.year,
+      month: month || this.state.query.month,
     };
 
     axios.get(' /api/articles', { params })

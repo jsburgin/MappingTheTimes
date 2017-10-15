@@ -25,18 +25,21 @@ const articlesApi = {
 
     const filterArticles = (articles) => {
       return articles.filter(article => {
-        return article.print_page === '1' && hasGeo(article);
+        return article.print_page == 1 && hasGeo(article);
       });
     };
 
     return axios.get(route, { params: { 'api-key': nytKey }})
       .then(res => {
+        console.log(res.data.response.docs.length);
         return filterArticles(res.data.response.docs);
       });
   },
   groupArticlesByDate(articles) {
     const days = [];
     let lastDay = 'a';
+
+    console.log(articles.length);
 
     articles.forEach(article => {
       if (article.pub_date[9] !== lastDay) {
