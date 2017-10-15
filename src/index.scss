@@ -1,5 +1,5 @@
 $nav-height: 70px;
-$black: #333333;
+$black: #2e2e2e;
 
 html,
 body,
@@ -67,6 +67,7 @@ body,
     padding-top: 4.5rem;
     //z-index: 500;
     //box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.22);
+    border-left: 1px solid rgb(234, 234, 234);
 
 
     h1 {
