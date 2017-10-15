@@ -20,6 +20,28 @@ export default class Article extends Component {
   render() {
     const { data } = this.props;
     const imgUrl = data.multimedia[0] ? data.multimedia[0].url : "";
+    const monthDict = {
+      0: 'Jan',
+      1: 'Feb',
+      2: 'Mar',
+      3: 'Apr',
+      4: 'May',
+      5: 'Jun',
+      6: 'Jul',
+      7: 'Aug',
+      8: 'Sep',
+      9: 'Oct',
+      10: 'Nov',
+      11: 'Dec'
+    };
+
+    const date = new Date(data.pub_date);
+    const month = monthDict[date.getUTCMonth()];
+    const day = date.getUTCDate();
+    const year = date.getUTCFullYear();
+
+    
+
     return (
       <VisibilitySensor partialVisibility onChange={(vis) => this.handleUpdate(vis, data)}>
         <div className="article">
@@ -36,7 +58,7 @@ export default class Article extends Component {
                 {data.byline.original}          
               </h3>
               <h3 className="date">
-                {dateFormat(data.pub_date, "mmm. dd, yyyy")}
+                {`${month}. ${day}, ${year}`}
               </h3>
             </div>
           )}
