@@ -5,8 +5,6 @@ import Header from '../components/Header';
 import Map from '../components/Map';
 import ArticleList from '../components/ArticleList';
 
-const apiRoute = process.env.API_ROUTE ? process.env.API_ROUTE : 'http://localhost:8000/api/'
-
 export default class Wrapper extends Component {
   constructor() {
     super();
@@ -50,7 +48,7 @@ export default class Wrapper extends Component {
       month: this.state.query.month,
     };
 
-    axios.get(apiRoute + 'articles', { params })
+    axios.get('/api/articles', { params })
       .then(res => res.data)
       .then(days => {
         this.setState({ days, day: 0, year: params.year, month: params.month });
@@ -68,7 +66,7 @@ export default class Wrapper extends Component {
       }
     });
 
-    axios.get(apiRoute + 'geocode', { params: { location }}).then(coordinates => {
+    axios.get('/api/geocode', { params: { location }}).then(coordinates => {
       this.setState({ coordinates });
     });
   }
