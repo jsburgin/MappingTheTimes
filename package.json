@@ -26,8 +26,10 @@
     "watson-developer-cloud": "^2.41.1"
   },
   "scripts": {
-    "start": "npm-run-all -p watch-css start-js",
+    "prestart": "npm run build",
+    "start": "node backend",
     "start-js": "react-scripts start",
+    "start:frontend": "npm-run-all -p watch-css start-js",
     "start:backend": "nodemon backend",
     "build": "npm run build-css && react-scripts build",
     "build-css": "node-sass-chokidar src -o src/css",

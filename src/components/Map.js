@@ -9,6 +9,8 @@ const zooms = {
   place: 8,
   country: 5,
   city: 6,
+  region: 7,
+  neighborhood: 12,
 };
 
 export default class Map extends Component {

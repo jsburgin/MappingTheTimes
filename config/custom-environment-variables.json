@@ -1,0 +1,9 @@
+{
+  "mapboxKey": "MAPBOX_KEY",
+  "nytKey": "NYT_KEY",
+  "watson": {
+    "username": "WATSON_USERNAME",
+    "password": "WATSON_PASSWORD"
+  },
+  "redis": "REDIS_URL"
+}

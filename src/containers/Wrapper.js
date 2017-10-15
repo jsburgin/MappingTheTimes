@@ -48,7 +48,7 @@ export default class Wrapper extends Component {
       month: this.state.query.month,
     };
 
-    axios.get('http://localhost:8000/api/articles', { params })
+    axios.get('/api/articles', { params })
       .then(res => res.data)
       .then(days => {
         this.setState({ days, day: 0, year: params.year, month: params.month });
@@ -66,7 +66,7 @@ export default class Wrapper extends Component {
       }
     });
 
-    axios.get('http://localhost:8000/api/geocode', { params: { location }}).then(coordinates => {
+    axios.get('/api/geocode', { params: { location }}).then(coordinates => {
       this.setState({ coordinates });
     });
   }
