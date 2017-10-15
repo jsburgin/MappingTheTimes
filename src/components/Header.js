@@ -36,7 +36,7 @@ export default class Header extends Component {
           </div>
           <div>
             {days.map((day, i) => (
-              <button className="day-button" value={i} key={i} onClick={this.handleDayClick}>{i + 1}</button>
+              <button className="day-button" value={i} key={i} onClick={this.handleDayClick}>{day.buttonLabel}</button>
             ))}
           </div>
           <div className="year">

@@ -36,23 +36,30 @@ const articlesApi = {
       });
   },
   groupArticlesByDate(articles) {
+    const map = {};
     const days = [];
     let lastDay = 'a';
 
-    console.log(articles.length);
-
     articles.forEach(article => {
-      if (article.pub_date[9] !== lastDay) {
-        lastDay = article.pub_date[9];
-        days.push({
-          date: article.pub_date.split('T')[0],
-          articles: [],
-        });
+      const date = new Date(article.pub_date).getUTCDate();
+      if (!map[date]) {
+        map[date] = {
+          buttonLabel: parseInt(date),
+          articles: []
+        };
       }
 
-      days[days.length - 1].articles.push(article);
+      map[date].articles.push(article);
     });
 
+    for (let key in map) {
+      days.push(map[key]);
+    }
+
+    days.sort((a, b) => {
+      return a.buttonLabel > b.buttonLabel;
+    });
+    
     return days;
   },
   get(query) {
