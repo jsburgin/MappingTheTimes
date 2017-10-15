@@ -27,7 +27,7 @@ export default class Article extends Component {
               {data.headline.main}  
             </h1>
           )}
-          {data.byline.original && (
+          {data.byline && (
             <h3 className="author">
               {data.byline.original}          
             </h3>
