@@ -5,6 +5,12 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2lkcDAiLCJhIjoiY2o4cm94cHVvMHpkdjMycXBzcmpiY
 
 let map;
 
+const zooms = {
+  place: 8,
+  country: 5,
+  city: 6,
+};
+
 export default class Map extends Component {
   componentDidMount() {
     map = new mapboxgl.Map({
@@ -19,14 +25,19 @@ export default class Map extends Component {
     map.dragRotate.disable();
     map.doubleClickZoom.disable();
   }
+  
 
   componentWillReceiveProps(nextProps) {
+    const feature = nextProps.coordinates.data.features[0];
+    
     map.flyTo({
-      center: nextProps.coordinates.data.features[0].center,
-      zoom: 5,
-      speed: 0.2,
-      curve: 2
+      center: feature.center,
+      zoom: zooms[feature.place_type[0]]|| 5,
+      speed: .4,
+      curve: 1,
     });
+
+    
   }
 
   render() {

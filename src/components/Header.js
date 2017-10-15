@@ -1,24 +1,5 @@
 import React, { Component } from 'react';
-import Slider from 'rc-slider';
-import Tooltip from 'rc-tooltip';
-import 'rc-slider/assets/index.css';
-
-const Handle = Slider.Handle;
-
-const handle = (props) => {
-  const { value, dragging, index, ...restProps } = props;
-  return (
-    <Tooltip
-      prefixCls="rc-slider-tooltip"
-      overlay={value}
-      visible={dragging}
-      placement="top"
-      key={index}
-    >
-      <Handle value={value} {...restProps} />
-    </Tooltip>
-  );
-};
+import Slider from 'react-slick';
 
 export default class Header extends Component {
   handleAfterChange = finishVal => {
@@ -26,16 +7,22 @@ export default class Header extends Component {
   }
 
   render() {
+    const settings = {
+      accessibility: true,
+      draggable: true,
+      afterChange: this.handleAfterChange
+
+    }
     return (
       <div className='header'>
         <h1>Mapping The Times</h1>
-        <Slider
-          min={0}
-          max={this.props.days.length}
-          defaultValue={this.props.days.length} 
-          handle={handle}
-          onAfterChange={this.handleAfterChange}
-        />
+        <Slider {...settings}>
+        <div style={{ width: '500px' }}>
+          {this.props.days.map(day => (
+            <div key={day.date}></div>
+          ))}
+        </div>
+        </Slider>
       </div>
     );
   }

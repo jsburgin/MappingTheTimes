@@ -8,28 +8,52 @@ import ArticleList from '../components/ArticleList';
 export default class Wrapper extends Component {
   constructor() {
     super();
+    const today = new Date();
 
     this.state = {
       coordinates: null,
       days: [],
       visibleStack: [],
       emitter: new EventEmitter(),
+      day: 0,
+      query: {
+        year: today.getFullYear(),
+        month: today.getMonth(),
+      },
+      month: today.getMonth(),
       mode: 'dark',
     };
-
-    this.updateCoordinates.bind(this);
   }
 
-  async componentWillMount() {
-    const days = (await axios.get('http://localhost:8000/api/articles?year=2017&month=9')).data;
+  componentWillMount() {
     const { emitter } = this.state;
-    this.setState({ days });
 
-    this.updateCoordinates(days[0].articles[0]);
-
-    emitter.on('onLastArticleToBecomeVisible', (e) => { 
-      this.setState({ message: 'hello' })
+    emitter.on('changeYear', year => {
+      this.setState({ query: Object.assign({}, this.state.query, { year }) });
     });
+
+    emitter.on('changeMonth', month => {
+      this.setState({ query: Object.assign({}, this.state.query, { month }) });
+    });
+
+    emitter.on('changeDay', day => this.setState({ day }));
+    emitter.on('fetchArticles', () => this.fetchArticles());
+
+    this.fetchArticles();
+  }
+
+  fetchArticles = () => {
+    const params = {
+      year: this.state.query.year,
+      month: this.state.query.month,
+    };
+
+    axios.get('http://localhost:8000/api/articles', { params })
+      .then(res => res.data)
+      .then(days => {
+        this.setState({ days, day: 0, year: params.year, month: params.month });
+        this.updateCoordinates(days[0].articles[0]);
+      });
   }
 
   updateCoordinates = (article) => {
