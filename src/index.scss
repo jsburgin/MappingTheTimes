@@ -63,9 +63,16 @@ div.date-select {
     width:1000px;
     div{
         margin: .25rem;
+        display: flex;
+        flex-direction: row;
+
+        label {
+            cursor: pointer;
+        }
     }
     input[type='radio']{
         visibility: hidden;
+        cursor: pointer;
     }
     div.year{
         position: fixed;
@@ -80,6 +87,7 @@ div.date-select {
             border-bottom: 2px solid white;
             padding-left: 17px;
             margin-right: .5rem;
+            outline: none;
         }
         button{
             background: none;
@@ -95,8 +103,8 @@ div.date-select {
         }
     }
     input:checked + label {
-    background: rgba(255, 255, 255, 0.1);
-        color: white;
+        background: white;
+        color: black;
         font-weight: bold;
     }
 }

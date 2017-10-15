@@ -34,13 +34,14 @@ export default class Wrapper extends Component {
 
     emitter.on('changeMonth', month => {
       this.setState({ query: Object.assign({}, this.state.query, { month }) });
+      this.fetchArticles();
     });
 
     emitter.on('changeDay', day => this.setState({ day }));
     emitter.on('fetchArticles', () => this.fetchArticles());
 
     this.fetchArticles();
-  }
+  } 
 
   fetchArticles = () => {
     const params = {
@@ -48,7 +49,7 @@ export default class Wrapper extends Component {
       month: this.state.query.month,
     };
 
-    axios.get('/api/articles', { params })
+    axios.get(' /api/articles', { params })
       .then(res => res.data)
       .then(days => {
         this.setState({ days, day: 0, year: params.year, month: params.month });

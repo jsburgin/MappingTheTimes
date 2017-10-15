@@ -25,6 +25,7 @@
     "slick-carousel": "^1.8.1",
     "watson-developer-cloud": "^2.41.1"
   },
+  "proxy": "http://localhost:8000",
   "scripts": {
     "prestart": "npm run build",
     "start": "node backend",
