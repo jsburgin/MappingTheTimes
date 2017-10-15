@@ -24,9 +24,11 @@ export default class Article extends Component {
       <VisibilitySensor partialVisibility onChange={(vis) => this.handleUpdate(vis, data)}>
         <div className="article">
           {data.headline.main && (
-            <h1 className="article-title">
-              {data.headline.main}  
-            </h1>
+            <a href={data.web_url} target="_blank">
+              <h1 className="article-title">
+                {data.headline.main}  
+              </h1>
+            </a>
           )}
           {data.byline && data.pub_date && (
             <div className="by-line">
@@ -44,6 +46,7 @@ export default class Article extends Component {
               {data.snippet}
             </p>
           )}
+          <a className="read-more" href={data.web_url} target="_blank">Read More</a>
             <div className="tags">
           {data.new_desk && (
             <h4>{data.new_desk}</h4>
