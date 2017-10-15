@@ -3,6 +3,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2lkcDAiLCJhIjoiY2o4cm94cHVvMHpkdjMycXBzcmpiYTF3MiJ9.iSzjhsbk8TT8n2YF-sJoVQ'
 
+let map;
+
 const testCoords = {
   ny: [-73.935242, 40.730610],
   tokyo: [139.839478, 35.652832],
@@ -13,7 +15,7 @@ const testCoords = {
 
 export default class Map extends Component {
   componentDidMount() {
-    const map = new mapboxgl.Map({
+    map = new mapboxgl.Map({
       container: 'mapContainer',
       style: 'mapbox://styles/sidp0/cj8s7d32pc5k22rntxcgzxi73',
       zoom: 3,
@@ -25,36 +27,22 @@ export default class Map extends Component {
     map.dragRotate.disable();
     map.doubleClickZoom.disable();
 
-    map.flyTo({
-      center: testCoords.ny,
-      zoom: 4,
-      speed: 0.2,
-      curve: 2
-    })
-    map.flyTo({
-      center: testCoords.tokyo,
+    /*map.flyTo({
+      center: testCoords.rio,
       zoom: 6,
       speed: 0.2,
       curve: 2
-    })
+    })*/
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     map.flyTo({
-      center: testCoords.budapest,
-      zoom: 2,
-      speed: 0.2,
-      curve: 2
-    })
-    map.flyTo({
-      center: testCoords.newDelhi,
+      center: nextProps.coordinates.data.features[0].center,
       zoom: 5,
       speed: 0.2,
       curve: 2
-    })
-    map.flyTo({
-      center: testCoords.rio,
-      zoom: 3,
-      speed: 0.2,
-      curve: 2
-    })
+    });
   }
 
   render() {
