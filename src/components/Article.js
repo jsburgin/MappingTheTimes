@@ -44,12 +44,14 @@ export default class Article extends Component {
               {data.snippet}
             </p>
           )}
+            <div className="tags">
           {data.new_desk && (
             <h4>{data.new_desk}</h4>
           )}
           {data.section_name && (
             <h4>{data.section_name}</h4>
           )}
+            </div>
         </div>
       </VisibilitySensor>
     );

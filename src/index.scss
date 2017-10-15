@@ -21,8 +21,7 @@ body,
 
 .header {
     background: $black;
-    border-bottom: 1px solid $black;
-    //box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.22);
+    border-bottom: 1px solid $black; //box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.22);
     margin-top: 0;
     width: 100%; //height: $nav-height;
     position: absolute;
@@ -35,10 +34,8 @@ body,
     h1 {
         color: white;
         margin: 0;
-        margin-left: 2rem;
-        //padding: 25px;
-        font-size: 20px;
-        //font-weight: 100;
+        margin-left: 2rem; //padding: 25px;
+        font-size: 20px; //font-weight: 100;
     }
 }
 
@@ -64,8 +61,7 @@ body,
     float: right;
     display: inline-block;
     background: white;
-    padding-top: 4.5rem;
-    //z-index: 500;
+    padding-top: 4.5rem; //z-index: 500;
     //box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.22);
     border-left: 1px solid rgb(234, 234, 234);
 
@@ -75,43 +71,60 @@ body,
         font-style: italic;
     }
 
-    .article{
+    .article {
         width: 80%;
         margin-left: auto;
-        margin-right: auto;
-        //border-top: 1px solid $black;
+        margin-right: auto; //border-top: 1px solid $black;
         //border-bottom: 1px solid $black;
         position: relative;
         overflow: hidden;
         min-height: calc(100vh - 4.5rem);
         margin-bottom: 5rem;
 
-        h1{
+        h1 {
             font-size: 26px;
             line-height: 28px;
         }
 
-//        time{
-//            position: absolute;
-//            left: -40px;
-//            top: -30px;
-//            background: white;
-//            padding: 10px;
-//            z-index: 50;
-//            overflow: visible;
-//        }
-
-        h3{
-            font-size: 11px;
-            font-weight: bold;
-
+        .by-line {
             padding-bottom: 1rem;
             border-bottom: 1px solid #d6d6d6;
             padding-top: 1rem;
             border-top: 1px solid #d6d6d6;
+            margin-bottom: 1.5rem;
+        }
+        h3 {
+            font-size: 9px;
+            text-transform: uppercase;
+            font-weight: 400;
+            display: inline-block;
+
+            &:first-of-type {
+
+            font-size: 11px;
+                margin-bottom: 0rem;
+                margin-right: 1.25rem;
+                font-weight: bold;
+                text-transform: none;
+            }
+
+        }
+        div.tags{
+            position: absolute;
+            bottom: 1.5rem;
+            right: 0;
+        }
+        h4{
+            display: inline;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 10px;
+            margin-right: 1rem;
+            float: right;
+
         }
 
-        p{
+        p {
             line-height: 26px;
             font-size: 17px;
         }

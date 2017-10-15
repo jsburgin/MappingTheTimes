@@ -36,7 +36,7 @@ export default class Wrapper extends Component {
       this.setState({ query: Object.assign({}, this.state.query, { month }) });
     });
 
-    emitter.on('changeDay', day => this.setState{ day });
+    emitter.on('changeDay', day => this.setState({ day }));
     emitter.on('fetchArticles', () => this.fetchArticles());
 
     this.fetchArticles();
