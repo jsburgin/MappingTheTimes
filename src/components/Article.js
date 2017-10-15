@@ -5,7 +5,7 @@ export default class Article extends Component {
   constructor() {
     super();
 
-    this.state = { visible: false };
+    this.state = { visible: true };
   }
 
   handleUpdate = (isVisible, articleData) => {

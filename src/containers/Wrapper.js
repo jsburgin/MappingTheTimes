@@ -27,7 +27,9 @@ export default class Wrapper extends Component {
 
     this.updateCoordinates(days[0].articles[0]);
 
-    emitter.on('onLastArticleToBecomeVisible', (e) => console.log(e));
+    emitter.on('onLastArticleToBecomeVisible', (e) => { 
+      this.setState({ message: 'hello' })
+    });
   }
 
   updateCoordinates = (article) => {
@@ -40,9 +42,9 @@ export default class Wrapper extends Component {
       }
     });
 
-    // axios.get('http://localhost:8000/api/geocode', { params: { location }}).then(coordinates => {
-    //   this.setState({ coordinates });
-    // });
+    axios.get('http://localhost:8000/api/geocode', { params: { location }}).then(coordinates => {
+      this.setState({ coordinates });
+    });
   }
 
   render() {
