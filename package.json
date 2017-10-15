@@ -30,6 +30,7 @@
     "start": "node backend",
     "start-js": "react-scripts start",
     "start:frontend": "npm-run-all -p watch-css start-js",
+    "start:backend": "nodemon backend",
     "build": "npm run build-css && react-scripts build",
     "build-css": "node-sass-chokidar src -o src/css",
     "watch-css": "npm run build-css && node-sass-chokidar src -o src/css --watch --recursive",
