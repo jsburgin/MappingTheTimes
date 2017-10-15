@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
+import dateFormat from 'dateformat';
 
 export default class Article extends Component {
   constructor() {
@@ -27,17 +28,27 @@ export default class Article extends Component {
               {data.headline.main}  
             </h1>
           )}
-          {data.byline && (
-            <h3 className="author">
-              {data.byline.original}          
-            </h3>
+          {data.byline && data.pub_date && (
+            <div className="by-line">
+              <h3 className="author">
+                {data.byline.original}          
+              </h3>
+              <h3 className="date">
+                {dateFormat(data.pub_date, "mmm. dd, yyyy")}
+              </h3>
+            </div>
           )}
-
           { imgUrl && (<img src={`http://nytimes.com/${imgUrl}`} alt={data.headline.print_headline} />) }
           {data.snippet && (
             <p className="article-body">
               {data.snippet}
             </p>
+          )}
+          {data.new_desk && (
+            <h4>{data.new_desk}</h4>
+          )}
+          {data.section_name && (
+            <h4>{data.section_name}</h4>
           )}
         </div>
       </VisibilitySensor>
