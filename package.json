@@ -9,6 +9,7 @@
     "config": "^1.26.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "mapbox": "^1.0.0-beta9",
     "mapbox-gl": "^0.41.0",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.1",
