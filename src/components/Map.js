@@ -5,13 +5,11 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2lkcDAiLCJhIjoiY2o4cm94cHVvMHpkdjMycXBzcmpiY
 
 let map;
 
-const testCoords = {
-  ny: [-73.935242, 40.730610],
-  tokyo: [139.839478, 35.652832],
-  budapest: [19.035133, 47.501896],
-  newDelhi: [77.088104, 28.619570],
-  rio: [-43.182365, 	-22.970722]
-}
+const zooms = {
+  place: 8,
+  country: 5,
+  city: 6,
+};
 
 export default class Map extends Component {
   componentDidMount() {
@@ -26,23 +24,20 @@ export default class Map extends Component {
     map.dragPan.disable();
     map.dragRotate.disable();
     map.doubleClickZoom.disable();
-
-    /*map.flyTo({
-      center: testCoords.rio,
-      zoom: 6,
-      speed: 0.2,
-      curve: 2
-    })*/
   }
+  
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    const feature = nextProps.coordinates.data.features[0];
+    
     map.flyTo({
-      center: nextProps.coordinates.data.features[0].center,
-      zoom: 5,
-      speed: 0.2,
-      curve: 2
+      center: feature.center,
+      zoom: zooms[feature.place_type[0]]|| 5,
+      speed: .4,
+      curve: 1,
     });
+
+    
   }
 
   render() {
