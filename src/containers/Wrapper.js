@@ -9,22 +9,24 @@ export default class Wrapper extends Component {
     super();
 
     this.state = {
-      articles: []
+      days: []
     };
   }
 
   async componentWillMount() {
-    const articles = (await axios.get('http://localhost:8000/api/articles')).data;
-    this.setState({ articles: articles[articles.length - 1].articles });
+    const days = (await axios.get('http://localhost:8000/api/articles?year=2017&month=10')).data;
+    this.setState({ days });
   }
 
   render() {
     return (
-      <div className="wrapper">
-        <Header {...this.state} />
-        <Map {...this.state} />
-        <ArticleList {...this.state} />
-      </div>
+      this.state.days.length > 0 && (
+        <div className="wrapper">
+          <Header {...this.state} />
+          <Map {...this.state} />
+          <ArticleList {...this.state} />
+        </div>
+      )
     );
   }
 }
