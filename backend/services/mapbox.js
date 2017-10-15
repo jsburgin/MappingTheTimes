@@ -2,4 +2,15 @@ const config = require('config');
 const MapboxClient = require('mapbox');
 const client = new MapboxClient(config.get('mapboxKey'));
 
-module.exports = client;
+const mapbox = {
+  geocode(value) {
+    return new Promise((resolve, reject) => {
+      client.geocodeForward(value, (err, data, res) => {
+        err ? reject(err) : resolve(data);
+      });
+    });
+  },
+};
+
+
+module.exports = mapbox;
