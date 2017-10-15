@@ -22,7 +22,7 @@ export default class Header extends Component {
         <h1>Mapping The Times</h1>
         <Slider {...settings}>
           {this.props.days.map((day, i) => (
-            <div class="day-node">{i + 1}</div>
+            <div key={i + 1} className="day-node">{i + 1}</div>
           ))}
         </Slider>
       </div>
