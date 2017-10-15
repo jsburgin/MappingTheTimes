@@ -56,11 +56,11 @@ const articlesApi = {
       days.push(map[key]);
     }
 
-    days.sort((a, b) => {
-      return a.buttonLabel > b.buttonLabel;
-    });
     
-    return days;
+    
+    return days.sort((a, b) => {
+      return a.buttonLabel - b.buttonLabel;
+    });
   },
   get(query) {
     const key = `a-${query.year}-${query.month}`;
