@@ -53,7 +53,7 @@ const articlesApi = {
     return days;
   },
   get(query) {
-    const key = `${query.year}-${query.month}`;
+    const key = `a-${query.year}-${query.month}`;
 
     return cache.getAsync(key)
       .then(articles => {
