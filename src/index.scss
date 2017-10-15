@@ -84,12 +84,13 @@ body,
         h1 {
             font-size: 26px;
             line-height: 28px;
+            margin-top: 2rem;
         }
 
         .by-line {
-            padding-bottom: 1rem;
+            padding-bottom: .3rem;
             border-bottom: 1px solid #d6d6d6;
-            padding-top: 1rem;
+            padding-top: .1rem;
             border-top: 1px solid #d6d6d6;
             margin-bottom: 1.5rem;
         }
@@ -109,6 +110,11 @@ body,
             }
 
         }
+
+        img{
+            //border: 3px solid rgb(234, 234, 234);
+        }
+
         div.tags{
             position: absolute;
             bottom: 1.5rem;
