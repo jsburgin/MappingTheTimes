@@ -10,7 +10,7 @@ const Article = props => {
       <h3 className="author">
         {props.data.byline.original}
       </h3>
-      { imgUrl && (<img src={`http://nytimes.com/${imgUrl}`} />) }
+      { imgUrl && (<img src={`http://nytimes.com/${imgUrl}`} alt={props.data.headline.print_headline} />) }
       <p className="article-body">
         {props.data.snippet}
       </p>
