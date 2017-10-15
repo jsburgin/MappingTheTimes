@@ -71,7 +71,7 @@ body,
         border-bottom: 1px solid $black;
         position: relative;
         overflow: hidden;
-        max-height: 85vh;
+        min-height: 85vh;
         margin-bottom: 5rem;
 
         h1{
