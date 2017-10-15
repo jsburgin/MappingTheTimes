@@ -1,5 +1,5 @@
 {
-  "cacheMinutes": "5",
+  "cacheMinutes": "20",
   "mapboxKey": "",
   "nytKey": "",
   "watson": {

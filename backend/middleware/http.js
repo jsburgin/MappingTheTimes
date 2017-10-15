@@ -3,7 +3,12 @@ const http = {
     return (req, res, next) => {
       const data = Object.assign({}, req.body, req.query);
 
-      method(data).then(apiData => res.json(apiData)).catch(next);
+      method(data)
+        .then(apiData => {
+          res.type('json');
+          res.send(apiData)
+        })
+        .catch(next);
     };
   }
 };

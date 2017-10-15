@@ -2,90 +2,70 @@ const config = require('config');
 const nytKey = config.get('nytKey');
 const axios = require('axios');
 const cache = require('../cache');
-
-const cacheMinutes = parseInt(config.get('cacheMinutes'));
+const mapbox = require('../services/mapbox');
 
 const articlesApi = {
-  processArticle(article) {
-    // TODO - possible Watson natural language integration
-    return Promise.resolve(article);
+  cacheArticleBatch(articles, key) {
+    cache.setAsync(key, JSON.stringify(articles));
   },
-  getProcessedArticles(articles) {
-    return Promise.all(articles.map(article => {
-      return cache.getAsync(article.id)
-        .then(processedArticle => {
-          // article already processed, return from cache
-          if (processedArticle) return JSON.parse(processedArticle);
+  getArticles(year, month) {
+    const route = `https://api.nytimes.com/svc/archive/v1/${year}/${month}.json`;
 
-          // send article off to watson
-          return processArticle(article);
-        });
-    })).then(processedArticles => {
-      process.nextTick(() => articlesApi.saveArticleBatch(articles, route));
-      return processedArticles;
-    });
-  },
-  cacheArticleBatch(articleBatch, route) {
-    const now = Date.now();
-    // set expiresAt to current time + 5 minutes
-    const data = {
-      articleBatch,
-      expiresAt: now + (1000 * 60 * cacheMinutes),
-      cachedAt: now 
+    const hasGeo = (article) => {
+      let valid = false;
+      article.keywords.forEach(keyword => {
+        if (keyword.name === 'glocations') {
+          valid = true;
+          return false;
+        }
+      });
+
+      return valid;
     };
 
-    cache.setAsync(route, JSON.stringify(data));
-  },
-  fetchArticles(route) {
+    const filterArticles = (articles) => {
+      return articles.filter(article => {
+        return article.print_page === '1' && hasGeo(article);
+      });
+    };
+
     return axios.get(route, { params: { 'api-key': nytKey }})
       .then(res => {
-        return res.data.results;
+        return filterArticles(res.data.response.docs);
       });
   },
   groupArticlesByDate(articles) {
-    const map = {};
     const days = [];
+    let lastDay = 'a';
 
     articles.forEach(article => {
-      if (!article.geo_facet || article.geo_facet === '') return;
-      if (!map[article.published_date]) {
-        map[article.published_date] = {
-          day: article.published_date,
+      if (article.pub_date[9] !== lastDay) {
+        lastDay = article.pub_date[9];
+        days.push({
+          date: article.pub_date.split('T')[0],
           articles: [],
-        };
+        });
       }
 
-      map[article.published_date].articles.push(article);
-    });
-
-    for (let key in map) {
-      days.push(map[key]);
-    }
-
-    days.sort((a, b) => {
-      return a.day < b.day;
+      days[days.length - 1].articles.push(article);
     });
 
     return days;
   },
-  get(data) {
-    if (!data.section) data.section = 'U.S.';
-    const route = `https://api.nytimes.com/svc/mostpopular/v2/mostviewed/${data.section}/30.json`;
+  get(query) {
+    const key = `${query.year}-${query.month}`;
 
-    return cache.getAsync(route)
-      .then(data => data ? JSON.parse(data) : data)
-      .then(data => {
-        // data was returned from cache, and is valid
-        if (data && data.expiresAt && Date.now() < new Date(data.expiresAt).getTime()) {
-          return data.articleBatch;
-        }
+    return cache.getAsync(key)
+      .then(articles => {
+        // data was returned from cache
+        if (articles) return articles;
 
         // re-process the route
-        return articlesApi.fetchArticles(route)
+        return articlesApi.getArticles(query.year, query.month)
           .then(articles => {
-            const articleBatch = articlesApi.groupArticlesByDate(articles);
-            process.nextTick(() => articlesApi.cacheArticleBatch(articleBatch, route));
-            return articleBatch;
+            articles = articlesApi.groupArticlesByDate(articles);
+            process.nextTick(() => articlesApi.cacheArticleBatch(articles, key));
+            return articles;
           });
       });
   }
