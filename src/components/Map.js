@@ -35,9 +35,7 @@ export default class Map extends Component {
       zoom: zooms[feature.place_type[0]]|| 5,
       speed: .4,
       curve: 1,
-    });
-
-    
+    }); 
   }
 
   render() {
