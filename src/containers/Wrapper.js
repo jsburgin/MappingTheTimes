@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Map from '../components/Map';
 import ArticleList from '../components/ArticleList';
 
-const apiRoute = process.env.apiRoute ? process.env.API_ROUTE : 'http://localhost:8000/api/'
+const apiRoute = process.env.API_ROUTE ? process.env.API_ROUTE : 'http://localhost:8000/api/'
 
 export default class Wrapper extends Component {
   constructor() {
