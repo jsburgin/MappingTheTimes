@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 export default class Header extends Component {
   handleAfterChange = finishVal => {
     console.log('finished changing');
@@ -10,18 +13,17 @@ export default class Header extends Component {
     const settings = {
       accessibility: true,
       draggable: true,
-      afterChange: this.handleAfterChange
-
+      afterChange: this.handleAfterChange,
+      swipeToSlide: true,
     }
+    console.log(this.props.days)
     return (
       <div className='header'>
         <h1>Mapping The Times</h1>
         <Slider {...settings}>
-        <div style={{ width: '500px' }}>
-          {this.props.days.map(day => (
-            <div key={day.date}></div>
+          {this.props.days.map((day, i) => (
+            <div class="day-node">{i + 1}</div>
           ))}
-        </div>
         </Slider>
       </div>
     );
