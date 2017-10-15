@@ -17,6 +17,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.14",
+    "react-visibility-sensor": "^3.11.0",
     "redis": "^2.8.0",
     "semantic-ui-react": "^0.74.2",
     "watson-developer-cloud": "^2.41.1"
