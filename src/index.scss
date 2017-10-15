@@ -85,6 +85,27 @@ body,
             font-size: 26px;
             line-height: 28px;
             margin-top: 2rem;
+
+        }
+
+        a{
+            color: inherit;
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+        }
+
+            &.read-more{
+                //box-sizing: content-box;
+                margin-top: 2rem;
+                border: 1px solid $black;
+                padding: .5rem;
+                border-radius: 3px;
+                //width: 30%;
+                position: absolute;
+                bottom: 2.25rem;
+                left: 0;
+            }
         }
 
         .by-line {
@@ -111,9 +132,6 @@ body,
 
         }
 
-        img{
-            //border: 3px solid rgb(234, 234, 234);
-        }
 
         div.tags{
             position: absolute;
