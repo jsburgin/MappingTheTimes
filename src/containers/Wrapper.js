@@ -12,6 +12,7 @@ export default class Wrapper extends Component {
     this.state = {
       coordinates: null,
       days: [],
+      visibleStack: [],
       emitter: new EventEmitter(),
       mode: 'dark',
     };
@@ -20,14 +21,16 @@ export default class Wrapper extends Component {
   }
 
   async componentWillMount() {
-    const days = (await axios.get('http://localhost:8000/api/articles?year=2017&month=10')).data;
+    const days = (await axios.get('http://localhost:8000/api/articles?year=2017&month=9')).data;
     const { emitter } = this.state;
     this.setState({ days });
 
     this.updateCoordinates(days[0].articles[0]);
+
+    emitter.on('onLastArticleToBecomeVisible', (e) => console.log(e));
   }
 
-  async updateCoordinates(article) {
+  updateCoordinates = (article) => {
     let location = null;
 
     article.keywords.forEach(keyword => {
@@ -37,8 +40,9 @@ export default class Wrapper extends Component {
       }
     });
 
-    const gecodeData = await axios.get('http://localhost:8000/api/geocode', { params: { location }});
-    this.setState({ coordinates: gecodeData });
+    // axios.get('http://localhost:8000/api/geocode', { params: { location }}).then(coordinates => {
+    //   this.setState({ coordinates });
+    // });
   }
 
   render() {
