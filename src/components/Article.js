@@ -22,16 +22,23 @@ export default class Article extends Component {
     return (
       <VisibilitySensor partialVisibility onChange={(vis) => this.handleUpdate(vis, data)}>
         <div className="article">
-          <h1 className="article-title">
-            {data.headline.main}
-          </h1>
-          <h3 className="author">
-            {data.byline.original}
-          </h3>
+          {data.headline.main && (
+            <h1 className="article-title">
+              {data.headline.main}  
+            </h1>
+          )}
+          {data.byline.original && (
+            <h3 className="author">
+              {data.byline.original}          
+            </h3>
+          )}
+
           { imgUrl && (<img src={`http://nytimes.com/${imgUrl}`} alt={data.headline.print_headline} />) }
-          <p className="article-body">
-            {data.snippet}
-          </p>
+          {data.snippet && (
+            <p className="article-body">
+              {data.snippet}
+            </p>
+          )}
         </div>
       </VisibilitySensor>
     );
